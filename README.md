@@ -40,7 +40,7 @@
 ### 1. Клониране на хранилището
 Клонирайте проекта от GitHub:
 ```bash
-git clone https://github.com/nik0la1vanov/tupalki-performance.git
+git clone https://github.com/22514KristianKostadinov/tupalki-performance.git
 cd tupalki-performance
 ```
 
