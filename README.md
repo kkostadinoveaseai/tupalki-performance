@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tupalki Performance
 
-## Getting Started
+Уебсайт за чип тунинг услуги — училищен проект.
 
-First, run the development server:
+## Описание на проекта
+**Tupalki Performance** е модерен, високоскоростен и напълно интерактивен уебсайт за премиум чип тунинг студио. Сайтът позволява на потребителите да разглеждат различни нива на софтуерен ремап (Stage 1, Stage 2, ECO тунинг), скоростни кутии (DSG/ZF), диагностични решения, реални отзиви от клиенти и да изпращат индивидуални запитвания за своите автомобили.
 
+Този проект е разработен като училищен проект за предмета **[Име на предмет / Технологии]**.
+
+---
+
+## Технологичен стек (Tech Stack)
+Проектът е изграден с помощта на следните съвременни технологии:
+- **Next.js & React**: Основна рамка за сървърно и клиентско рендериране.
+- **Tailwind CSS**: Модерен utility-first CSS рамков инструмент за първокласен отзивчив дизайн.
+- **Prisma**: ORM за бърза и безопасна комуникация с базата данни.
+- **PostgreSQL (Supabase)**: Облачна релационна база данни за съхранение на запитвания.
+- **Resend**: Имейл услуга за изпращане на автоматични потвърждения до клиенти и известия до администратора.
+
+---
+
+## Основни функционалности (Features)
+- **Контактна форма с база данни**: Потребителите могат да изпращат запитвания с данни за колата си, които се записват директно в PostgreSQL базата.
+- **Автоматични имейл известия**:
+  - Автоматичен имейл за потвърждение до клиента (Customer Confirmation).
+  - Моментално имейл известие до собственика на студиото при ново запитване (Owner Notification).
+- **Пълна отзивчивост (Responsive Design)**: Оптимизиран интерфейс за всякакви мобилни телефони, таблети и десктоп екрани.
+- **Четири основни страници**:
+  1. **Начало (Home)**: Кинематографично Hero видео/изображение, списък с предимства, стъпки на работа, интерактивна галерия и акценти.
+  2. **Услуги и Цени (Services)**: Списък с детайлни цени, спецификации на мощност/въртящ момент и бързи връзки.
+  3. **Отзиви на Клиенти (Reviews)**: Оценки с филтрирани метрики от реални шофьори.
+  4. **Контакти (Contacts)**: Интерактивна карта, работно време и форма за директна връзка.
+
+---
+
+## Инсталация и стартиране (Installation & Setup)
+
+Следвайте тези стъпки, за да стартирате проекта локално на вашия компютър:
+
+### 1. Клониране на хранилището
+Клонирайте проекта от GitHub:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/nik0la1vanov/tupalki-performance.git
+cd tupalki-performance
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Инсталиране на зависимостите
+Инсталирайте всички нужни Node.js пакети:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. Конфигуриране на променливите на средата
+Копирайте примерния `.env.example` файл и създайте `.env`:
+```bash
+cp .env.example .env
+```
+Отворете `.env` файла и попълнете съответните сигурни пароли и API ключове:
+- `DATABASE_URL` — Линк към PostgreSQL базата данни (Supabase).
+- `DIRECT_URL` — Директен линк към базата за миграции.
+- `RESEND_API_KEY` — API ключ за Resend имейл доставчика.
+- `OWNER_EMAIL` — Имейлът на администратора, където ще се получават новите запитвания.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Стартиране на миграции за базата данни
+Синхронизирайте Prisma схемата с вашата PostgreSQL база данни:
+```bash
+npx prisma migrate dev
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Стартиране на сървъра за разработка
+Стартирайте локалния сървър:
+```bash
+npm run dev
+```
+Отворете [http://localhost:3000](http://localhost:3000) във вашия браузър, за да разгледате приложението.
