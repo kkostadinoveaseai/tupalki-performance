@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import BrandLogo from "@/components/BrandLogo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,31 +41,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo Section */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            {/* Tachometer Icon */}
-            <svg
-              className="w-8 h-8 text-brand-accent transform transition-transform duration-500 group-hover:rotate-12"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              />
-            </svg>
-            <div className="flex flex-col">
-              <span className="font-heading font-extrabold text-xl tracking-wider text-white uppercase sm:text-2xl">
-                TUPALKI
-              </span>
-              <span className="text-[10px] font-heading font-semibold text-brand-accent tracking-[0.25em] uppercase -mt-1.5 transition-all group-hover:tracking-[0.3em]">
-                PERFORMANCE
-              </span>
-            </div>
-          </Link>
+          <BrandLogo priority />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">

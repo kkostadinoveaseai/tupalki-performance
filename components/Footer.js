@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrandLogo from "@/components/BrandLogo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,25 +12,11 @@ export default function Footer() {
           
           {/* Column 1: Brand & Description */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <svg
-                className="w-6 h-6 text-brand-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-              <span className="font-heading font-extrabold text-lg tracking-wider text-white uppercase">
-                TUPALKI <span className="text-brand-accent">PERFORMANCE</span>
-              </span>
-            </Link>
+            <BrandLogo
+              width={120}
+              height={40}
+              imageClassName="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain"
+            />
             <p className="text-sm text-neutral-400 leading-relaxed max-w-sm">
               Премиум студио за чип тунинг, софтуерен ремап и цялостна диагностика на спортни и масови автомобили. Постигаме максимална ефективност без компромис с ресурса на двигателя.
             </p>
