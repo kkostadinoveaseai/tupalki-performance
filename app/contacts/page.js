@@ -11,7 +11,8 @@ export default function Contacts() {
     message: "",
   });
 
-  const [status, setStatus] = useState("idle"); // idle, loading, success
+  const [status, setStatus] = useState("idle"); // idle, loading, success, error
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +27,7 @@ export default function Contacts() {
     }
 
     setStatus("loading");
+    setErrorMessage("");
 
     try {
       const response = await fetch("/api/contact", {
@@ -34,15 +36,20 @@ export default function Contacts() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          carInfo: formData.carModel,
-          message: formData.message,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          carInfo: formData.carModel.trim(),
+          message: formData.message.trim(),
         }),
       });
 
-      const data = await response.json();
+      let data = {};
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error("Сървърът върна неочакван отговор. Стартирайте ли npm run dev?");
+      }
 
       if (response.ok && data.success) {
         setStatus("success");
@@ -55,10 +62,18 @@ export default function Contacts() {
         });
       } else {
         setStatus("error");
+        setErrorMessage(
+          data.error ||
+            "Възникна грешка. Моля опитайте отново или ни се обадете директно."
+        );
       }
     } catch (error) {
       console.error("Error submitting contact form:", error);
       setStatus("error");
+      setErrorMessage(
+        error.message ||
+          "Няма връзка със сървъра. Стартирайте проекта с npm run dev и отворете http://localhost:3000/contacts"
+      );
     }
   };
 
@@ -210,7 +225,8 @@ export default function Contacts() {
 
                   {status === "error" && (
                     <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm animate-fade-in">
-                      Възникна грешка. Моля опитайте отново или ни се обадете директно.
+                      {errorMessage ||
+                        "Възникна грешка. Моля опитайте отново или ни се обадете директно."}
                     </div>
                   )}
 
